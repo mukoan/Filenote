@@ -23,17 +23,18 @@ on Mac as well as Linux.
  - `./filenote.sh file "note"` adds/replaces a note for `file`
  - `./filenote.sh file` shows the note for `file`
  - `./filenote.sh -d file` deletes the note for `file`
- - `./lsnote.sh` lists files in the current directory and shows the note
+ - `./lsnote.sh` lists files in the current directory and shows any notes that exist
 
 ## How it Works
 
-A simple text file with the name `.filename.fn` is created/overwritten.
+A simple text file with the name `.filename.fn` is created/overwritten. In normal
+usage this file is hidden because the name begins with a dot.
 
 ## Future Work (?)
 
 Here are some ideas for future work:
  - Support for wildcards
- - Support for additional parameters to `ls`
+ - Support for `lsnote` to pass additional parameters to `ls`
  - Add `cpnote` and `rmnote` variants to copy and remove notes when copying and removing files
  - Clean up: detect orphaned notes and remove them
 
