@@ -4,7 +4,11 @@
 # Author: Lyndon Hill
 # Brief : List files and directories and show notes
 
-LISTING=$(ls --color -l)
+if [[ $(uname) == "Darwin" ]]; then
+  LISTING=$(CLICOLOR_FORCE=1 ls -Gl)
+else
+  LISTING=$(ls --color -l)
+fi
 
 IFS=$'\n'
 FILES=$LISTING
@@ -16,7 +20,7 @@ do
   IFS=$' '
   read -ra ELEMENTS <<< "$f"
   NOTENAME=".${ELEMENTS[${#ELEMENTS[@]}-1]}.fn"
-  DECOLOURISED=$(echo ${NOTENAME} | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g")
+  DECOLOURISED=$(echo ${NOTENAME} | sed -E "s/"$'\E'"\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g")
   if [ -f $DECOLOURISED ]; then
     cat $DECOLOURISED
   fi
