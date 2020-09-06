@@ -23,7 +23,7 @@ on Mac as well as Linux.
  - `./filenote.sh file "note"` adds/replaces a note for `file`
  - `./filenote.sh file` shows the note for `file`
  - `./filenote.sh -d file` deletes the note for `file`
- - `./lsnote.sh` lists files in the current directory and shows any notes that exist
+ - `./lsnote.sh [dir]` lists files in the current or specified directory and shows any notes that exist
 
 ## How it Works
 
@@ -33,8 +33,10 @@ usage this file is hidden because the name begins with a dot.
 ## Future Work (?)
 
 Here are some ideas for future work:
+ - filenote only works for the current directory
  - Support for wildcards
  - Support for `lsnote` to pass additional parameters to `ls`
+ - Handle links (lsnote is broken for links)
  - Add `cpnote` and `rmnote` variants to copy and remove notes when copying and removing files
  - Clean up: detect orphaned notes and remove them
 
