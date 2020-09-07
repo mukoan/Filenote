@@ -33,7 +33,6 @@ usage this file is hidden because the name begins with a dot.
 ## Future Work (?)
 
 Here are some ideas for future work:
- - filenote only works for the current directory
  - Support for wildcards
  - Support for `lsnote` to pass additional parameters to `ls`
  - Handle links (lsnote is broken for links)

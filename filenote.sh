@@ -20,20 +20,33 @@ case $# in
   ;;
 1)
   if [ -e $1 ]; then
-    cat ".$1.fn";      # if filenote exists
+    echo "Basename on $1"
+    FILENAME=$(basename $1)
+    ROUTE=$(dirname $1)
+
+    cat "$ROUTE/.$FILENAME.fn"      # if filenote exists
   fi
   ;;
 2)
-  ## if arg 1 == -d then delete note for file arg 2 if it exists
+  ## if arg 1 == -d then delete note for file arg2 if it exists
+
   if [ $1 = "-d" ]; then
-    if [ -e ".$2.fn" ]; then
-      rm ".$2.fn"
+    FILENAME=$(basename $2)
+    ROUTE=$(dirname $2)
+    NOTEFILE="$ROUTE/.$FILENAME.fn"
+
+    if [ -e $NOTEFILE ]; then
+      rm $NOTEFILE
     fi
     exit 0
   fi
 
   ## else replace/create note for file arg1 with text in arg2, if arg1 exists
-  echo "$2" > ".$1.fn"
+
+  FILENAME=$(basename $1)
+  ROUTE=$(dirname $1)
+  NOTEFILE="$ROUTE/.$FILENAME.fn"
+  echo "$2" > $NOTEFILE
   ;;
 esac
 
