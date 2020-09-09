@@ -6,8 +6,8 @@
 
 TARGET="."
 if [ $# -gt 0 ]; then
-  if [ -d $1 ]; then
-    TARGET=$1
+  if [ -d "$1" ]; then
+    TARGET="$1"
   fi
 fi
 

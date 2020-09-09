@@ -19,10 +19,9 @@ case $# in
   echo "Usage: filenote.sh <filename> [comment]"
   ;;
 1)
-  if [ -e $1 ]; then
-    echo "Basename on $1"
-    FILENAME=$(basename $1)
-    ROUTE=$(dirname $1)
+  if [ -e "$1" ]; then
+    FILENAME=$(basename "$1")
+    ROUTE=$(dirname "$1")
 
     cat "$ROUTE/.$FILENAME.fn"      # if filenote exists
   fi
@@ -31,8 +30,8 @@ case $# in
   ## if arg 1 == -d then delete note for file arg2 if it exists
 
   if [ $1 = "-d" ]; then
-    FILENAME=$(basename $2)
-    ROUTE=$(dirname $2)
+    FILENAME=$(basename "$2")
+    ROUTE=$(dirname "$2")
     NOTEFILE="$ROUTE/.$FILENAME.fn"
 
     if [ -e $NOTEFILE ]; then
@@ -43,8 +42,8 @@ case $# in
 
   ## else replace/create note for file arg1 with text in arg2, if arg1 exists
 
-  FILENAME=$(basename $1)
-  ROUTE=$(dirname $1)
+  FILENAME=$(basename "$1")
+  ROUTE=$(dirname "$1")
   NOTEFILE="$ROUTE/.$FILENAME.fn"
   echo "$2" > $NOTEFILE
   ;;
