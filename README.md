@@ -30,6 +30,17 @@ on Mac as well as Linux.
 A simple text file with the name `.filename.fn` is created/overwritten. In normal
 usage this file is hidden because the name begins with a dot.
 
+## Mac Version
+
+@the_accidental [suggested](https://twitter.com/doppio/status/1312833598895124483)
+using Ext4 extended attributes for the Mac version. Although that would be a neater
+solution, it wouldn't work out of the box on Linux and I would prefer to be able
+to transfer filenotes between Mac and Linux.
+Therefore, in the Mac directory you can find a version for Mac based on xattr
+but I do not plan to develop it further.
+By the way, xattr is not very friendly and cannot quietly fail; if I were to
+develop it further I would start by blocking xattr fail messages.
+
 ## Future Work (?)
 
 Here are some ideas for future work:
