@@ -36,10 +36,10 @@ usage this file is hidden because the name begins with a dot.
 using Ext4 extended attributes for the Mac version. Although that would be a neater
 solution, it wouldn't work out of the box on Linux and I would prefer to be able
 to transfer filenotes between Mac and Linux.
-Therefore, in the Mac directory you can find a version for Mac based on xattr
-but I do not plan to develop it further.
-By the way, xattr is not very friendly and cannot quietly fail; if I were to
-develop it further I would start by blocking xattr fail messages.
+
+In the Mac directory you can find a basic version of filenote for Mac
+based on xattr but I do not plan to develop it further. `xattr` complains when a file
+does not have a filenote.
 
 ## Future Work (?)
 
