@@ -4,6 +4,12 @@
 # Author: Lyndon Hill
 # Brief : List files and directories and show notes
 
+# Function: Decolourise a string
+decolourise () {
+  NOCOLOUR=$(echo $1 | sed -E "s/"$'\E'"\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g")
+  echo "$NOCOLOUR"
+}
+
 TARGET="."
 if [ $# -gt 0 ]; then
   if [ -d "$1" ]; then
@@ -23,17 +29,28 @@ FILES=$LISTING
 SKIPFIRSTLINE=1
 for f in ${FILES[@]};
 do
+  # Detect if file is a link
+  case ${f:0:1} in
+    "l") FILEISLINK=1 ;;
+      *) FILEISLINK=0 ;;
+  esac
+
+  # Get the filename
   IFS=$'%'
   echo $f
   IFS=$' '
   if [ $SKIPFIRSTLINE -eq 1 ]; then SKIPFIRSTLINE=0; continue; fi
   read -ra ELEMENTS <<< "$f"
-  NOTENAME=".${ELEMENTS[${#ELEMENTS[@]}-1]}.fn"
-  DECOLOURISED=$(echo ${NOTENAME} | sed -E "s/"$'\E'"\[([0-9]{1,3}((;[0-9]{1,3})*)?)?[m|K]//g")
 
-  DECOLOURISED=${TARGET}/$DECOLOURISED
+  case $FILEISLINK in
+    0) NOTENAME=".${ELEMENTS[${#ELEMENTS[@]}-1]}.fn" ;;
+    1) NOTENAME=".${ELEMENTS[${#ELEMENTS[@]}-3]}.fn" ;;
+  esac
+  
+  # Remove colour escape codes
+  DECOLOURISED=$( decolourise $NOTENAME )
 
-  if [ -f $DECOLOURISED ]; then
+  if [ -f ${TARGET}/${DECOLOURISED} ]; then
     cat $DECOLOURISED
   fi
 done

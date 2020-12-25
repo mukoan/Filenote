@@ -12,7 +12,7 @@ Notes were handy for a variety of reasons. I remember finding where
 I had downloaded a file from because the web browser had placed
 the URL in the filenote.
 
-Recently I found myself searching for a similar feature in modern
+I found myself searching for a similar feature in modern
 filesystems, such as ext4.
 
 Filenote could have been written in more modern bash but I wanted it to work
@@ -46,7 +46,6 @@ does not have a filenote.
 Here are some ideas for future work:
  - Support for wildcards
  - Support for `lsnote` to pass additional parameters to `ls`
- - Handle links (`lsnote` is broken for links)
  - Add `cpnote` and `rmnote` variants to copy and remove notes when copying and removing files
  - Clean up: detect orphaned notes and remove them
 
